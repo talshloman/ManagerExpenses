@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+<div id="home" data-role="page" data-theme="a">
+    <div data-role="header" data-theme="b">
+        <h2>Home</h2>
+    </div>
+    <div data-role="content" id="contentHome">
+        <a href="#" id="goToLogin" data-rel="close" class="ui-btn ui-shadow ui-corner-all">Login</a>
+        <a href="#" id="goToRegister" data-rel="close" class="ui-btn ui-shadow ui-corner-all">Register</a>
+        <p align="left">
+            <a href="#" id="goToResetPassword" data-rel="close">Forgot Password</a>
+        </p>
+        <div id="resetOption">
+            <p>Please enter your username</p>
+            <form>
+                <input class="required" type="text" id="usernameRest" placeholder="Username">
+                <input type="button" value="Reset Password" id="buttonResetPassword">
+                <div data-role="popup" id="popupResetPassword" data-position-to="window" data-transition="fade"><p></p></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div data-role="dialog" id="resetPassword" data-theme="a">
+    <div data-role="header" data-theme="b">
+        <h1>Reset Password</h1>
+    </div>
+    <div data-role="content">
+        <form id="SaveNewPasswordForm">
+            <input class="required" type="text" id="code" placeholder="Code">
+            <input class="required" type="password" id="newPassword" placeholder="New Password">
+            <input type="button" value="Save" id="buttonSavePassword">
+            <div data-role="popup" id="popupSavePassword" data-position-to="window" data-transition="fade"><p></p></div>
+        </form>
+    </div>
+</div>
+
+<div data-role="dialog" id="login" data-theme="a">
+    <div data-role="header" data-theme="b">
+        <h1>Login</h1>
+    </div>
+    <div data-role="content">
+        <form method="post" id="loginForm">
+            <input class="required" type="text" id="usernameLogin" placeholder="Username">
+            <input class="required" type="password" id="passwordLogin" placeholder="Password">
+            <input type="button" value="Login" id="buttonLogin">
+        </form>
+        <div data-role="popup" id="popupLogin" data-position-to="window" data-transition="fade"><p></p></div>
+    </div>
+</div>
+
+<div id="register" data-role="page" data-theme="a">
+    <div data-role="header" data-theme="b">
+        <h2>Register</h2>
+    </div>
+    <div data-role="content">
+        <p align="right">
+            <a href="#" id="backToHome">Back To Home</a>
+        </p>
+        <form name="registerForm" >
+            <input class="required" type="text" id="firstName" placeholder="First Name">
+            <input class="required" type="text" id="lastName" placeholder="Last Name">
+            <span id="answerUsername"></span>
+            <input class="required" type="text" id="usernameRegister" placeholder="Username">
+            <span id="answerPassword"></span>
+            <input class="required" type="password" id="password" placeholder="Password">
+            <span id="answerConfirmPassword"></span>
+            <input class="required" type="password" id="ConfirmPassword" placeholder="ConfirmPassword">
+            <span id="answerPhone"></span>
+            <input class="required" type="number" id="phone" placeholder="Phone" size="9">
+            <input type="button" value="Register" id="buttonRegister">
+        </form>
+    </div>
+    <div data-role="popup" id="popupRegister" data-position-to="window" data-transition="fade"><p></p></div>
+</div>
+
+<div id="main" data-role="page" data-theme="a">
+    <div data-role="panel" id="overlayPanel" data-display="overlay" data-theme="b">
+        <h2>Menu</h2>
+        <a href="#" data-rel="close" class="ui-btn ui-icon-back ui-btn-icon-left">Back</a>
+        <a href="#" id="goToAddExpense" data-rel="close" class="ui-btn ui-shadow ui-corner-all">Add Expense</a>
+        <a href="#" id="goToConstantExpense" data-rel="close" class="ui-btn ui-shadow ui-corner-all">Constant Expenses</a>
+        <a href="#" id="returnToMainWithAllExpenses" data-rel="close" class="ui-btn ui-shadow ui-corner-all">See All Expenses</a>
+        <a href="#" id="returnToMainWithThisMonthExpenses" data-rel="close" class="ui-btn ui-shadow ui-corner-all">This Month Expenses</a>
+        <a href="#" id="goToSetting" data-rel="close" class="ui-btn ui-shadow ui-corner-all">Setting</a>
+        <a href="#" id="goToReport" data-rel="close" class="ui-btn ui-shadow ui-corner-all">Report</a>
+        <a href="#" id="goTologout" data-rel="close" class="ui-btn ui-shadow ui-corner-all">Logout</a>
+    </div>
+    <div data-role="header" data-theme="b">
+        <a href="#overlayPanel" class="ui-btn ui-corner-all ui-icon-bullets ui-btn-icon-notext"></a><h2>Manager Expenses</h2>
+    </div>
+    <div data-role="content" class="ui-content">
+        <a href="#" id="SearchButton" class="ui-btn ui-icon-search ui-btn-icon-notext">Search</a>
+        <form id="SearchOption" >
+            <label for="formDate">From Date:</label>
+            <input class="required" type="date" name="formDate" id="formDate" data-icon="calendar">
+            <label for="untilDate">To Date:</label>
+            <input class="required" type="date" name="untilDate" id="untilDate" data-icon="calendar">
+            <input type="button" value="Search" id="buttonSearchExpense">
+            <div data-role="popup" id="popupSearch" data-position-to="window" data-transition="fade"><p></p></div>
+        </form>
+        <a href="Graphs.html#jqplot_test" rel="external" class="ui-btn">View Expenses By Month</a>
+        <a href="Graphs.html#Pie_Chart" rel="external" class="ui-btn">View Expenses By Category</a>
+        <table data-role="table" class="ui-responsive ui-shadow" id="tableMain">
+            <thead>
+            <tr>
+                <h3>Expenses</h3>
+            </tr>
+            </thead>
+            <tbody id="tbodyMain">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="addExpense" data-role="page" data-theme="a">
+    <div data-role="header" data-theme="b">
+        <h2>Add Expense</h2>
+    </div>
+    <div data-role="content">
+        <p align="right">
+            <a href="" class="ui-btn ui-icon-back ui-btn-icon-left" id="gobackToMainFromAddExpense">Back To Menu &rarr;</a>
+        </p>
+        <form name="addExpenseForm" id="addExpenseForm">
+            <input class="required" type="text" id="description" placeholder="Description">
+            <input class="required" type="number" id="sumAmount" placeholder="Sum Amount">
+            <fieldset class="ui-field-contain">
+                <label for="category">Category:</label>
+                <select name="category" id="category">
+                    <option id="Choosehere"value="Choosehere" selected>Choose category</option>
+                    <option value="food">Food</option>
+                    <option value="home">Home</option>
+                    <option value="pleasures">Pleasures</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="another">Another</option>
+                </select>
+            </fieldset>
+            <label for="date">Date:</label>
+            <input class="required" type="date" name="date" id="date" data-icon="calendar">
+
+            <input type="button" value="Add Expense" id="buttonAddExpense">
+        </form>
+        <div data-role="popup" id="popupAddExpense" data-position-to="window" data-transition="fade"><p></p></div>
+    </div>
+</div>
+
+<div id="updateExpense" data-role="page" data-theme="a">
+    <div data-role="header" data-theme="b">
+        <h2>Update Expense</h2>
+    </div>
+    <div data-role="content">
+        <p align="right">
+            <a href="" class="ui-btn ui-icon-back ui-btn-icon-left" id="gobackToMainFromUpdateExpense">Back To Menu</a>
+        </p>
+        <form name="UpdateExpenseForm" id = "UpdateExpenseForm">
+            <input class="required" type="hidden" name="updateId" id="updateId">
+            <input class="required" type="text" id="updateDescription" placeholder="Description">
+            <input class="required" type="number" id="updateSumAmount" placeholder="Sum Amount">
+            <fieldset class="ui-field-contain">
+                <label for="updateCategory">Category:</label>
+                <select class="required" name="updateCategory" id="updateCategory">
+                    <option value="food">Food</option>
+                    <option value="home">Home</option>
+                    <option value="pleasures">Pleasures</option>
+                    <option value="another">Another</option>
+                </select>
+            </fieldset>
+            <label for="updateDate">Date:</label>
+            <input class="required" type="date" name="updateDate" id="updateDate" data-icon="calendar">
+
+        </form>
+        <div data-role="popup" id="popupUpdateExpense" data-position-to="window" data-transition="fade"><p></p></div>
+    </div>
+</div>
+
+<div id="setting" data-role="page" data-theme="a">
+    <div data-role="header" data-theme="b">
+        <h2>Setting</h2>
+    </div>
+    <div data-role="content">
+        <p align="right">
+            <a href="" class="ui-btn ui-icon-back ui-btn-icon-left" id="gobackToMainFromSetting">Back To Menu</a>
+        </p>
+        <form name="settingForm">
+            <label for="dailyEcpense">Daily Expense:</label>
+            <input class="required" type="number" id="dailyEcpense"
+                   placeholder="Daily Expense">
+            <label for="weeklyExpense">Weekly Expense:</label>
+            <input class="required" type="number" id="weeklyExpense"
+                   placeholder="Weekly Expense">
+            <label for="monthlyExpense">Monthly Expense:</label>
+            <input class="required" type="number" id="monthlyExpense"
+                   placeholder="Monthly Expense">
+
+            <input type="button" value="Save" id="buttonSaveSetting">
+        </form>
+
+        <div data-role="popup" id="popupSettingSuccess" data-position-to="window" data-transition="fade"><p>Setting saved.</p></div>
+        <div data-role="popup" id="popupSettingFail" data-position-to="window" data-transition="fade"><p>Setting are not saved.</p></div>
+    </div>
+</div>
+
+<div id="report" data-role="page" data-theme="a">
+    <div data-role="header" data-theme="b">
+        <h2>Report</h2>
+    </div>
+    <div data-role="content">
+        <p align="right">
+            <a href="" class="ui-btn ui-icon-back ui-btn-icon-left" id="gobackToMainFromReport">Back To Menu &rarr;</a>
+        </p>
+        <div id="textForReport">
+            For any problem/request -
+            please send message to me:
+            managerexpensesforfree@gmail.com
+        </div>
+    </div>
+</div>
+
+<div id="constantExpense" data-role="page" data-theme="a">
+    <div data-role="header" data-theme="b">
+        <h2>Constant Expense</h2>
+    </div>
+    <div data-role="content">
+        <p align="left">
+            <input type="button" value="Add Constant Expense" id="goToAddConstantExpense">
+        </p>
+
+        <table data-role="table" class="ui-responsive ui-shadow" id="tableConstantMain">
+            <thead>
+            <tr>
+                <h3>Constant Expenses</h3>
+            </tr>
+            </thead>
+            <tbody id="tbodyConstantMain">
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div id="addConstantExpense" data-role="page" data-theme="a">
+    <div data-role="header" data-theme="b">
+        <h2>Add Constant Expense</h2>
+    </div>
+    <div data-role="content">
+        <p align="right">
+            <a href="" class="ui-btn ui-icon-back ui-btn-icon-left" id="gobackToConstantExpensesFromAddConstantExpense">Back To Menu &rarr;</a>
+        </p>
+        <form name="addExpenseForm">
+            <input class="required" type="text" id="descriptionConstant" placeholder="Description">
+            <input class="required" type="number" id="sumAmountConstant" placeholder="Sum Amount">
+            <fieldset class="ui-field-contain">
+                <label for="category">Category:</label>
+                <select name="category" id="categoryConstant">
+                    <option id="ChoosehereConstant"value="Choosehere" selected>Choose category</option>
+                    <option value="food">Food</option>
+                    <option value="home">Home</option>
+                    <option value="pleasures">Pleasures</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="another">Another</option>
+                </select>
+            </fieldset>
+            <input type="button" value="AddConstantExpense" id="buttonAddConstantExpense">
+        </form>
+        <div data-role="popup" id="popupAddConstantExpense" data-position-to="window" data-transition="fade"><p></p></div>
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="CSS/Index.css">
+<script src="file:///android_asset/JS/Index.js"></script>
+</body>
+</html>
